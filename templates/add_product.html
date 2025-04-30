@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-light">Add New Product</h2>
+<div class="card bg-dark text-white">
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <input type="text" class="form-control" id="category" name="category">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Initial Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="0" min="0">
+            </div>
+            <!-- Updated buttons with icons -->
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="bi bi-plus-circle me-2"></i> Add Product
+            </button>
+            <a href="{{ url_for('products') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-x-circle me-2"></i> Cancel
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

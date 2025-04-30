@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-light">Add to Inventory</h2>
+<div class="card bg-dark text-white">
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="product_id" class="form-label">Select Product</label>
+                <select class="form-select" id="product_id" name="product_id" required>
+                    <option value="">-- Select Product --</option>
+                    {% for product in products %}
+                    <option value="{{ product.id }}">{{ product.name }} (Current: {{ product.quantity }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity to Add</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="notes" class="form-label">Notes</label>
+                <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+            </div>
+            <!-- Updated buttons with icons -->
+            <button type="submit" class="btn btn-outline-success">
+                <i class="bi bi-plus-circle me-2"></i> Add to Inventory
+            </button>
+            <a href="{{ url_for('products') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-x-circle me-2"></i> Cancel
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

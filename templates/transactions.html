@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Transaction History</h2>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>User</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.product.name }}</td>
+                    <td>{{ transaction.user.username }}</td>
+                    <td>
+                        {% if transaction.transaction_type == 'in' %}
+                        <span class="badge bg-success">IN</span>
+                        {% else %}
+                        <span class="badge bg-danger">OUT</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ transaction.quantity }}</td>
+                    <td>{{ transaction.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ transaction.notes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
